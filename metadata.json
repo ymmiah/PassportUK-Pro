@@ -1,0 +1,7 @@
+{
+  "name": "UK Passport Photo Master",
+  "description": "Professional UK passport photo generator that automatically aligns, adjusts backgrounds, and crops images to meet strict UK Government requirements using Gemini AI.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
