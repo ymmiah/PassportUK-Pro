@@ -235,7 +235,21 @@ const App: React.FC = () => {
               </div>
               <p className="text-sm text-slate-400 leading-relaxed max-w-sm">The world's most advanced AI compliance engine for official UK passport photography. Precision-engineered for rejection-free applications.</p>
               <div className="flex items-center space-x-3 pt-2">
-                {['fa-github', 'fa-linkedin-in', 'fa-twitter'].map(icon => (<a key={icon} href="#" className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"><i className={`fa-brands ${icon} text-xs`}></i></a>))}
+                {[
+                  { icon: 'fa-github', url: 'https://github.com/ymmiah' },
+                  { icon: 'fa-facebook-f', url: 'http://facebook.com/ymmiah' },
+                  { icon: 'fa-linkedin-in', url: 'https://linkedin.com/in/ymmiah' }
+                ].map(social => (
+                  <a 
+                    key={social.icon} 
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
+                  >
+                    <i className={`fa-brands ${social.icon} text-xs`}></i>
+                  </a>
+                ))}
               </div>
             </div>
             <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
