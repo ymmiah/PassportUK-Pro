@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import Header from './components/Header';
 import RequirementCard from './components/RequirementCard';
@@ -103,6 +102,37 @@ const App: React.FC = () => {
     setAiDescription(''); setBrightness(100); setContrast(100); setExposure(100); setSaturation(100);
     setComplianceScore(0); setAiMetrics({}); setStatus(ProcessingStatus.IDLE); setError(null);
   };
+
+  const renderContentPage = (title: string, icon: string, sections: { head: string, body: React.ReactNode }[]) => (
+    <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-slate-100 max-w-4xl mx-auto animate-fadeIn">
+      <button onClick={() => setView('home')} className="mb-10 text-blue-600 hover:text-blue-900 flex items-center font-black text-[10px] uppercase tracking-[0.4em]">
+        <i className="fa-solid fa-arrow-left mr-3"></i> Back to Portal
+      </button>
+      <div className="flex items-center space-x-6 mb-12">
+        <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center text-3xl shadow-xl shadow-blue-500/5">
+          <i className={`fa-solid ${icon}`}></i>
+        </div>
+        <h3 className="text-4xl font-black text-slate-900 uppercase tracking-tighter">{title}</h3>
+      </div>
+      <div className="space-y-12">
+        {sections.map((sec, i) => (
+          <section key={i} className="group">
+            <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center uppercase tracking-tight">
+              <span className="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center text-[10px] font-black mr-4 shadow-xl group-hover:bg-blue-600 transition-colors">{i+1}</span>
+              {sec.head}
+            </h4>
+            <div className="text-slate-500 leading-relaxed pl-12 space-y-4 font-medium text-sm">
+              {sec.body}
+            </div>
+          </section>
+        ))}
+      </div>
+      <div className="mt-20 pt-10 border-t border-slate-50 flex justify-between items-center text-[9px] font-black text-slate-300 uppercase tracking-[0.5em]">
+        <span>Engine v3.5 • Biometric Master</span>
+        <span>Dec 24 2025</span>
+      </div>
+    </div>
+  );
 
   const renderHome = () => (
     <>
@@ -216,7 +246,6 @@ const App: React.FC = () => {
                       {Object.entries(aiMetrics).map(([key, val]) => (
                         <div key={key} className="flex items-center justify-between">
                           <span className="text-[9px] font-bold text-slate-500">{key}</span>
-                          {/* Fix: Explicitly cast 'val' as string to resolve TypeScript 'unknown' error */}
                           <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${(val as string).toLowerCase().includes('pass') ? 'bg-green-50 text-green-600' : 'bg-blue-50 text-blue-600'}`}>
                             {val}
                           </span>
@@ -314,29 +343,97 @@ const App: React.FC = () => {
       <Header onHomeClick={() => setView('home')} />
       <main className="flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
         {view === 'home' && renderHome()}
+        
+        {view === 'about' && renderContentPage('Surgical Intelligence', 'fa-circle-info', [
+          { head: 'The v3.5 Directive', body: 'PassportUK Pro v3.5 marks a new era in identity document photography. Our engine segments the face into biometric sub-regions, allowing for surgical repair of glares and white spots while ensuring strict crown-to-chin compliance.' },
+          { head: 'HMPO Gold Standard', body: 'We enforce the strict 29mm-34mm crown-to-chin requirement demanded by HM Passport Office. Our AI scales and centers your portrait with sub-pixel precision to ensure guaranteed acceptance.' },
+          { head: 'Advanced Reconstruction', body: <ul className="list-disc space-y-3"><li><b>Glare Removal:</b> Eliminates specular white spots on the T-zone.</li><li><b>Texture Growth:</b> Synthetic reconstruction of pores in overexposed zones.</li><li><b>Attire Synthesis:</b> Intelligent injection of professional clothing.</li></ul> }
+        ])}
+
+        {view === 'privacy' && renderContentPage('Biometric Security', 'fa-shield-halved', [
+          { head: 'Transient Data Core', body: 'Your privacy is non-negotiable. Our processing pipeline is strictly transient. Images are held in RAM during audit and synthesis, and are immediately purged upon session termination or export.' },
+          { head: 'Zero-Retention Policy', body: 'We do not store original or processed biometric data on any persistent server. Your face stays your face.' }
+        ])}
+
+        {view === 'terms' && renderContentPage('Service Terms', 'fa-file-contract', [
+          { head: 'Compliance Disclaimer', body: 'PassportUK Pro is an advanced assistive tool designed to meet HMPO specifications. While we maintain a 99%+ alignment rate, the final authority for document acceptance rests with the relevant government body.' },
+          { head: 'Usage Policy', body: 'Use of this software constitutes agreement that the output is for legitimate identity documentation only. Misuse of generative features for fraud is strictly prohibited.' }
+        ])}
+
+        {view === 'gdpr' && renderContentPage('GDPR Governance', 'fa-fingerprint', [
+          { head: 'Data Controller', body: 'In accordance with UK-GDPR, Yasin Mohammed Miah acts as the primary data controller for this session-based application.' },
+          { head: 'Right to Erasure', body: 'Since no data is persistently stored, the Right to Erasure is automatically enforced upon every browser refresh or session closure.' }
+        ])}
+
+        {view === 'license' && renderContentPage('Licensing', 'fa-certificate', [
+          { head: 'Individual Use', body: 'This Software is provided free of charge for individual, personal use for the purpose of passport photo generation.' },
+          { head: 'Commercial Restrictions', body: 'Any commercial or enterprise-level deployment requires a separate commercial SLA. Please contact the author for high-volume licensing.' }
+        ])}
       </main>
 
       <footer className="bg-slate-900 text-slate-400 pt-24 pb-12 mt-auto">
-        <div className="max-w-5xl mx-auto px-6 text-center md:text-left">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-            <div className="flex items-center space-x-5 mb-6 md:mb-0">
-              <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-2xl"><i className="fa-solid fa-passport text-white text-xl"></i></div>
-              <span className="font-black text-2xl text-white tracking-tighter uppercase leading-none">Passport<span className="text-blue-500">UK</span> Master</span>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-12 mb-20">
+            <div className="md:col-span-6 space-y-8">
+              <div className="flex items-center space-x-5">
+                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-2xl"><i className="fa-solid fa-passport text-white text-xl"></i></div>
+                <span className="font-black text-2xl text-white tracking-tighter uppercase leading-none">Passport<span className="text-blue-500">UK</span> Master</span>
+              </div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] leading-loose opacity-50 max-w-sm">Architected for the highest standard of documentation. Precision. Integrity. Rejection-Free Reconstruction. v3.5 STABLE.</p>
+              
+              {/* RESTORED SOCIAL MEDIA ICONS */}
+              <div className="flex items-center space-x-6 pt-2">
+                {[
+                  { icon: 'fa-github', url: 'https://github.com/ymmiah' },
+                  { icon: 'fa-facebook-f', url: 'https://facebook.com/ymmiah' },
+                  { icon: 'fa-linkedin-in', url: 'https://linkedin.com/in/ymmiah' }
+                ].map(social => (
+                  <a key={social.icon} href={social.url} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-500 shadow-lg group">
+                    <i className={`fa-brands ${social.icon} text-lg group-hover:scale-110`}></i>
+                  </a>
+                ))}
+              </div>
             </div>
-            <div className="flex space-x-8">
-              {['Home', 'About', 'License', 'Privacy'].map(item => (
-                <button key={item} onClick={() => setView(item.toLowerCase() as any)} className="text-[10px] font-black uppercase tracking-widest hover:text-blue-500 transition-colors">{item}</button>
-              ))}
+            
+            <div className="md:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-12">
+              <div className="space-y-8">
+                <h4 className="text-[11px] font-black text-white uppercase tracking-[0.5em] opacity-30">Portal</h4>
+                <ul className="space-y-4">
+                  {['Home', 'About', 'License'].map(l => (
+                    <li key={l}>
+                      <button onClick={() => setView(l.toLowerCase() as any)} className="text-[10px] text-slate-500 hover:text-blue-500 transition-all font-black uppercase tracking-[0.2em]">{l}</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-8">
+                <h4 className="text-[11px] font-black text-white uppercase tracking-[0.5em] opacity-30">Protocol</h4>
+                <ul className="space-y-4">
+                  {['Privacy', 'Terms', 'GDPR'].map(l => (
+                    <li key={l}>
+                      <button onClick={() => setView(l.toLowerCase() as any)} className="text-[10px] text-slate-500 hover:text-blue-500 transition-all font-black uppercase tracking-[0.2em]">{l}</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-8">
+                <h4 className="text-[11px] font-black text-white uppercase tracking-[0.5em] opacity-30">Status</h4>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3"><div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_15px_rgba(34,197,94,1)]"></div><span className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Live</span></div>
+                  <div className="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">Engine v3.5</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="pt-12 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="flex flex-col items-center md:items-start space-y-4">
+          
+          <div className="pt-12 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="flex flex-col items-center md:items-start space-y-3">
               <span className="text-white font-black text-lg tracking-tight uppercase">Yasin Mohammed Miah</span>
               <p className="text-slate-600 text-[9px] font-black uppercase tracking-[0.4em]">&copy; 2025 PASSPORT PRO • HMPO BIOMETRIC CORE v3.5</p>
             </div>
-            <div className="flex items-center space-x-12 opacity-20">
-               <div className="flex items-center space-x-4"><i className="fa-solid fa-atom text-blue-500 text-2xl"></i><span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Quantum Pass</span></div>
-               <div className="flex items-center space-x-4"><i className="fa-solid fa-lock text-green-500 text-2xl"></i><span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Secure Audit</span></div>
+            <div className="flex items-center space-x-10 opacity-20">
+               <div className="flex items-center space-x-3"><i className="fa-solid fa-atom text-blue-500 text-2xl"></i><span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">AI Core</span></div>
+               <div className="flex items-center space-x-3"><i className="fa-solid fa-lock text-green-500 text-2xl"></i><span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">SSL Encrypted</span></div>
             </div>
           </div>
         </div>
