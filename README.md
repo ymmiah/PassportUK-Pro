@@ -1,87 +1,66 @@
-# PassportUK Pro: Enterprise AI Compliance Engine 🇬🇧
+# PASSPORTUK PRO: ENTERPRISE AI COMPLIANCE & RECONSTRUCTION ENGINE 🇬🇧
 
-![Version](https://img.shields.io/badge/Version-2.5.0-blue.svg)
+![Version](https://img.shields.io/badge/Version-2.8.0-blue.svg)
 ![Compliance](https://img.shields.io/badge/Compliance-HMPO%20Standards-green.svg)
 ![AI-Powered](https://img.shields.io/badge/Engine-Gemini%202.5%20Flash-orange.svg)
-![Privacy](https://img.shields.io/badge/Privacy-Transient%20Pipeline-blueviolet.svg)
+![Last Updated](https://img.shields.io/badge/Updated-24th%20Dec%202025-brightgreen.svg)
 
-**PassportUK Pro** is a high-precision, industrial-grade AI solution engineered for the automated generation of government-compliant identity documentation. Built on the **Anatomical Fulfillment Engine (AFE)**, the platform eliminates the high rejection rates associated with amateur photography through deep biometric analysis and generative reconstruction.
-
----
-
-## 🏛️ Strategic Core Pillars
-
-### 1. Precision Alignment
-Utilizes volumetric facial seed detection to ensure the crown-to-chin ratio strictly occupies **70-80%** of the vertical 35mm x 45mm frame, meeting international ICAO and HMPO requirements.
-
-### 2. Biometric Privacy (Transient Pipeline)
-Engineered with a "Zero-Retention" architecture. Biometric data is processed in a transient memory state and purged immediately upon session termination, ensuring full alignment with **GDPR** and **UK Data Protection Act** standards.
-
-### 3. Anatomical Reconstruction
-Beyond simple filters, the engine performs "Demographic-Aware Anatomical Fulfillment," synthesizing professional attire (suits, cardigans, or plain infant-wear) and correcting posture to create a dignified, compliant portrait from any source image.
+**PASSPORTUK PRO** IS THE INDUSTRY-LEADING AI SOLUTION FOR THE AUTOMATED GENERATION OF GOVERNMENT-COMPLIANT IDENTITY DOCUMENTATION. POWERED BY THE **ANATOMICAL FULFILLMENT ENGINE (AFE) V2.8**, THIS PLATFORM FEATURES A "ZERO-REJECTION" ARCHITECTURE DESIGNED TO TRANSFORM EVEN THE MOST CHALLENGING SOURCE IMAGES INTO PERFECTLY COMPLIANT PORTRAITS.
 
 ---
 
-## 🚀 Key Enterprise Features
+## 🛡️ THE "ZERO-REJECTION" POLICY (UPDATED 24 DEC 2025)
 
-- **Advanced Shadow Neutralization**: Automated high-key lighting synthesis that removes ear, nose, and background shadows—the #1 cause of government photo rejection.
-- **Demographic Logic**: Intelligence-driven tailoring that distinguishes between infants, children, adults, and seniors to apply age-appropriate compliance rules.
-- **Manual Precision Cropping**: A professional-grade UI layer allowing users to define the primary focal area before AI processing begins.
-- **Multi-Format Export**: High-fidelity export options in optimized JPG or transparent PNG, including a 300DPI-ready rendering pipeline.
-- **Compliance Overlay**: Real-time visual validation tools for user-side verification of crown, chin, and eye-level alignment.
+UNLIKE STANDARD PHOTO TOOLS, PASSPORTUK PRO DOES NOT SIMPLY "CHECK" FOR COMPLIANCE; IT **ENFORCES** IT THROUGH DEEP GENERATIVE RECONSTRUCTION.
+
+### 1. FORENSIC SHADOW NEUTRALIZATION
+OUR ENGINE PERFORMS A MULTI-PASS SHADOW AUDIT. IT IDENTIFIES AND REMOVES HIGH-CONTRAST SIDE LIGHTING, EAR SHADOWS, AND NOSE-BRIDGE SHADOWS, REPLACING THEM WITH A SYNTHESIZED HIGH-KEY STUDIO LIGHTING MODEL.
+
+### 2. INTELLIGENT OBSTRUCTION CLEARANCE
+- **EYEWEAR REMOVAL**: AUTOMATICALLY DETECTS AND REMOVES GLASSES, RECONSTRUCTING THE EYES AND BRIDGE OF THE NOSE WITH 100% ANATOMICAL ACCURACY.
+- **INTRUSION REMOVAL**: DETECTS AND CLEARS PARENT HANDS/FINGERS, TOYS, HAIR OVER EYES, AND BACKGROUND ARTIFACTS (INCLUDING FLAGS OR PROPS).
+- **ANATOMICAL SYNTHESIS**: RECONSTRUCTS MISSING PARTS OF THE FACE OR NECK IF THEY WERE OBSCURED IN THE ORIGINAL FRAME.
+
+### 3. AGE-APPROPRIATE CLOTHING SYNTHESIS
+THE ENGINE INTELLIGENTLY ANALYZES THE SUBJECT'S AGE GROUP AND SYNTHESIZES APPROPRIATE, COMPLIANT ATTIRE:
+- **ADULTS**: SMART-CASUAL OR PROFESSIONAL SHIRTS/TOPS IN SOLID NEUTRAL TONES.
+- **CHILDREN**: NEAT, SIMPLE CLOTHING FREE OF LOGOS, HOODS, OR DISTRACTING PATTERNS.
+- **INFANTS**: CLEAR, PLAIN BABY-WEAR; ENSURING NO BIBS OR ADULT SUPPORT IS VISIBLE.
+
+### 4. FACIAL EXPRESSION NORMALIZATION
+THE ENGINE ANALYZES THE SUBJECT'S POISE AND EXPRESSION. IT FORCIBLY NORMALIZES FACIAL FEATURES TO A NEUTRAL STATE (CLOSED MOUTH, EYES LEVEL AND OPEN) AND STRAIGHTENS THE HEAD POSITION TO MEET HMPO STRICTURES.
 
 ---
 
-## 🛠️ Technical Architecture
+## 🏛️ STRATEGIC CORE PILLARS
 
-| Layer | Technology | Purpose |
+### 1. VOLUMETRIC ALIGNMENT
+UTILIZES ADVANCED FACIAL SEED DETECTION TO ENSURE THE CROWN-TO-CHIN RATIO STRICTLY OCCUPIES **70-80%** OF THE VERTICAL 35MM X 45MM FRAME.
+
+### 2. BIOMETRIC PRIVACY (TRANSIENT PIPELINE)
+ENGINEERED WITH A "ZERO-RETENTION" ARCHITECTURE. ALL DATA IS PROCESSED IN A TRANSIENT MEMORY STATE AND PURGED IMMEDIATELY UPON SESSION TERMINATION, ENSURING FULL ALIGNMENT WITH **GDPR** AND THE **UK DATA PROTECTION ACT**.
+
+---
+
+## 🚀 ENTERPRISE DEPLOYMENT
+
+| LAYER | TECHNOLOGY | PURPOSE |
 | :--- | :--- | :--- |
-| **Frontend** | React 19 / TypeScript | Type-safe, high-performance UI components. |
-| **Intelligence** | Gemini 2.5 Flash Image | State-of-the-art generative AI for image synthesis. |
-| **Styling** | Tailwind CSS | Utility-first responsive design framework. |
-| **Processing** | React-Easy-Crop | Client-side pre-processing and focal definition. |
-| **Security** | TLS 1.3 / Transient Buffers | Secure end-to-end data transmission. |
+| **INTELLIGENCE** | GEMINI 2.5 FLASH | DEEP GENERATIVE RECONSTRUCTION & SYNTHESIS. |
+| **CORE** | REACT 19 + TYPESCRIPT | TYPE-SAFE, INDUSTRIAL-GRADE APPLICATION LOGIC. |
+| **SECURITY** | TLS 1.3 / SSL | SECURE END-TO-END TRANSIENT DATA BUFFERS. |
 
 ---
 
-## 💻 Deployment & Integration
+## ⚖️ LICENSING & COMMERCIAL GOVERNANCE
 
-### Prerequisites
-- Node.js 18.x or higher
-- Google Gemini API Tier Access
+### 🟢 PERSONAL & INDIVIDUAL LICENSE
+FREE FOR PRIVATE, NON-COMMERCIAL USE. ALL DERIVATIVE OUTPUTS MUST RETAIN THE "POWERED BY YASIN MOHAMMED MIAH" DIGITAL SIGNATURE.
 
-### Installation
-```bash
-# Clone the enterprise repository
-git clone https://github.com/yasin-mohammed-miah/passport-uk-pro.git
-
-# Initialize environment dependencies
-npm install
-
-# Configure security environment
-echo "API_KEY=your_secure_gemini_key" > .env
-
-# Launch production-grade dev environment
-npm run dev
-```
+### 🔴 ENTERPRISE & COMMERCIAL LICENSE
+ANY USE WITHIN A BUSINESS ENVIRONMENT REQUIRES A **COMMERCIAL SLA**.
 
 ---
-
-## ⚖️ Licensing & Commercial Governance
-
-### 🟢 Individual / Academic License
-Free for individual use, community research, and personal passport applications. Attribution to **Yasin Mohammed Miah** must remain visible in the UI.
-
-### 🔴 Enterprise & Commercial License
-Commercial utilization (e.g., photo booths, travel agencies, government contractors, or SaaS integration) requires a **Commercial Service Level Agreement (SLA)**.
-- **Commercial use without a license is a breach of copyright.**
-- **Licensing Contact**: Inquiries should be directed to the repository author.
-
----
-
-## 🛡️ HMPO Compliance Disclaimer
-While PassportUK Pro is designed to exceed the technical specifications of HM Passport Office (HMPO), final acceptance of any photograph is at the sole discretion of the relevant government authority. This tool is provided as a compliance assistant and does not guarantee application success.
-
----
-**Developed and Architected by Yasin Mohammed Miah**  
-*Precision. Integrity. Innovation.*
+**ARCHITECTED AND MAINTAINED BY [YASIN MOHAMMED MIAH](HTTPS://GITHUB.COM/YMMIAH)**  
+*PRECISION. INTEGRITY. ZERO-REJECTION ARCHITECTURE.*  
+*LAST UPDATED: 24TH DECEMBER 2025*

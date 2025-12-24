@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface HeaderProps {
@@ -22,11 +21,11 @@ const Header: React.FC<HeaderProps> = ({ onHomeClick }) => {
         </div>
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-gray-500">
           <button onClick={onHomeClick} className="hover:text-blue-600 transition-colors font-bold">Home</button>
-          <a href="#" className="hover:text-blue-600 transition-colors">Requirements</a>
-          <a href="#" className="hover:text-blue-600 transition-colors">FAQ</a>
+          <a href="#" className="hover:text-blue-600 transition-colors font-bold">Requirements</a>
+          <a href="#" className="hover:text-blue-600 transition-colors font-bold">FAQ</a>
         </nav>
         <div className="flex items-center space-x-2">
-          <span className="text-[10px] uppercase font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">Compliance Engine v2.5</span>
+          <span className="text-[10px] uppercase font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">Compliance Engine v2.8</span>
         </div>
       </div>
     </header>

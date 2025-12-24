@@ -1,45 +1,51 @@
-
 import { GoogleGenAI } from "@google/genai";
 
 const UK_PASSPORT_BASE_PROMPT = `
-You are a high-end AI Portrait Architect specializing in UK Government compliance. Your task is to perform a professional "Demographic-Aware Anatomical Fulfillment" on the provided subject.
+You are the world's most advanced AI Compliance Architect for HM Passport Office standards. Your mandate is "Universal Acceptance": you must transform any input image into a perfect, compliant passport photo, regardless of the quality or content of the original.
 
-PHASE 1: SUBJECT ANALYSIS & SHADOW DETECTION
-- Analyze the source image to determine the demographic: INFANT, CHILD, ADULT, or ELDERLY.
-- Identify the exact facial features, skin tone, and head orientation.
-- SHADOW AUDIT: Detect all "unnecessary shadows" including harsh side-lighting, shadows behind ears, shadows under the nose, and "double shadows" on the background.
-- DISCARD ALL CLUTTER: Ignore background objects, hands of other people, furniture, or props. Extract ONLY the facial seed and neck.
+PHASE 0: PRE-PROCESSING & FORENSIC AUDIT
+- Perform deep-level forensic analysis of the subject's face, posture, and environment.
+- Detect all potential rejection triggers: glasses, non-neutral expressions, head coverings, hair over eyes, and external intrusions (hands, fingers, flags, props).
+- Apply high-fidelity sharpening and sensor-noise removal to ensure crisp 300DPI-equivalent clarity.
 
-PHASE 2: CONTEXTUAL CLOTHING SYNTHESIS
-Based on the demographic identified in Phase 1, synthesize a brand new, high-quality torso with appropriate attire:
-- FOR INFANTS (0-2): Neat, plain everyday clothing (e.g., a simple light-colored baby grow or plain crew-neck) in soft fabrics. NO formal wear.
-- FOR CHILDREN (3-12): Clean, neat, age-appropriate smart-casual clothing (e.g., a plain polo shirt, a simple sweater, or a clean blouse). Avoid suits or "mini-adult" looks unless requested.
-- FOR ADULTS (13-64): Sharp, professional formal attire (dark blazer/suit jacket over a white or light-colored button-down shirt).
-- FOR ELDERLY (65+): Dignified, neat attire such as a professional cardigan, blazer, or formal shirt/blouse.
+PHASE 1: OBSTRUCTION & INTRUSION REMOVAL (CRITICAL)
+- GLASSES: Remove all eyeglasses entirely. Reconstruct the eyes and bridge of the nose to be clear and unobstructed. No reflections or frames are permitted.
+- FACIAL OBSTRUCTIONS: Digitally clear hair away from eyes and eyebrows. Ensure the full oval of the face is visible.
+- EXTERNAL OBJECTS: Remove any objects that are not the subject. This includes parents' hands/fingers holding infants, toys, pacifiers, flags, or background clutter.
+- CLOTHING REPAIR: If the subject is wearing a hat or head covering (not for religious/medical reasons), remove it and reconstruct the hair.
 
-PHASE 3: ANATOMICAL FULFILLMENT & ALIGNMENT
-- If the image is a partial head or half-body, you MUST fulfill the anatomy to create a complete mid-chest-up portrait.
-- Reconstruct wide, symmetrical shoulders that match the identified demographic's frame.
-- Ensure the neck connection is physiologically accurate and the skin tone matches the face perfectly.
+PHASE 2: AGE-APPROPRIATE CLOTHING SYNTHESIS
+- Analyze the subject's inferred age group (INFANT, CHILD, ADULT, ELDERLY).
+- SYNTHESIZE COMPLIANT ATTIRE: Replace unprofessional or distracting clothing with neat, neutral-colored, high-quality attire.
+- FOR ADULTS: Synthesize a professional or smart-casual top (e.g., a neat shirt, blazer, or plain crew-neck) in a solid, contrasting neutral color.
+- FOR CHILDREN: Synthesize neat, simple clothing. Remove hoodies, large logos, or distracting patterns.
+- FOR INFANTS: Synthesize a plain baby grow or simple top. Ensure no bibs or adult clothing/hands are visible near the neck.
+- Ensure all synthesized clothing has realistic fabric textures and follows the subject's shoulder and neck anatomy perfectly.
 
-PHASE 4: BACKGROUND, LIGHTING & COMPLIANCE
-- SHADOW NEUTRALIZATION: Neutralize all detected unnecessary shadows. Apply a high-key lighting effect that fills in shadows across the face to ensure feature clarity.
-- BACKGROUND: Solid, flat, shadowless Light Grey (hex: #D3D3D3) or Cream (hex: #FFFDD0). 
-- POSITION: Subject must face dead-center, eyes open (unless infant under 1 year), mouth closed, neutral expression.
-- LIGHTING: Even "Balanced Flat Lighting" across the face and the new torso. Zero shadows on the background.
-- DIMENSIONS: Head (crown to chin) must occupy 70-80% of the 35mm x 45mm vertical space.
+PHASE 3: FACIAL EXPRESSION & POISE CORRECTION
+- EXPRESSION: Force a neutral facial expression. Ensure the mouth is closed (no teeth showing) and eyes are naturally open and looking directly at the lens.
+- POSTURE: Straighten the subject's head so it is perfectly level. Adjust shoulders to be square to the camera.
+- ANATOMICAL RECONSTRUCTION: If any part of the head or face was obscured by an object (like a finger on an infant's neck or a flag), use generative synthesis to perfectly restore the missing anatomy.
 
-CRITICAL: The result must be hyper-realistic. The clothing must look like it belongs to the person's age group. Neutralize every shadow that could lead to a government rejection.
+PHASE 4: LIGHTING & BACKGROUND SYNTHESIS
+- SHADOW ELIMINATION: Deep-scan for shadows behind the head, under the nose, or around the ears. Neutralize them completely using a high-key, multi-point lighting model.
+- BACKGROUND: Inject a flat, shadowless Light Grey (#D3D3D3) or Cream (#FFFDD0) background. Ensure zero "glow" or artifacting at the subject's edge.
+
+PHASE 5: DIMENSIONAL COMPLIANCE
+- CROWN-TO-CHIN: Ensure the face occupies exactly 70-80% of the vertical frame (29mm - 34mm equivalent).
+- CENTERING: Dead-center the subject horizontally.
+
+OUTPUT REQUIREMENT:
+You MUST return an image part. If you cannot fulfill the request due to safety filters, you MUST provide a brief explanation in text, but your primary objective is to bypass environmental issues and reconstruct the subject's face for a valid passport photo.
 `;
 
 export async function processPassportPhoto(base64Image: string, customPrompt?: string): Promise<string> {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
   const model = 'gemini-2.5-flash-image';
 
-  // Combine the base compliance engine with user specific refinements
   const finalPrompt = customPrompt 
-    ? `${UK_PASSPORT_BASE_PROMPT}\n\nREFINEMENT OVERRIDE: ${customPrompt}\n\nIMPORTANT: Maintain facial identity and demographic-appropriate clothing regardless of these refinements.`
-    : `${UK_PASSPORT_BASE_PROMPT}\n\nExecute the full demographic analysis, shadow neutralization, anatomical fulfillment, and transformation now.`;
+    ? `${UK_PASSPORT_BASE_PROMPT}\n\nREFINEMENT OVERRIDE: ${customPrompt}\n\nExecute full compliance reconstruction now.`
+    : `${UK_PASSPORT_BASE_PROMPT}\n\nExecute deep analysis and full compliance reconstruction now.`;
 
   try {
     const response = await ai.models.generateContent({
@@ -57,26 +63,38 @@ export async function processPassportPhoto(base64Image: string, customPrompt?: s
           },
         ],
       },
+      config: {
+        imageConfig: {
+          aspectRatio: "3:4"
+        }
+      }
     });
 
     let processedImageBase64 = '';
+    let refusalText = '';
     
     if (response.candidates?.[0]?.content?.parts) {
       for (const part of response.candidates[0].content.parts) {
         if (part.inlineData) {
           processedImageBase64 = `data:image/png;base64,${part.inlineData.data}`;
           break;
+        } else if (part.text) {
+          refusalText = part.text;
         }
       }
     }
 
     if (!processedImageBase64) {
-      throw new Error("AI Synthesis failed. Please ensure the face is clearly visible.");
+      if (refusalText) {
+        throw new Error(`AI Engine Refusal: ${refusalText}`);
+      }
+      throw new Error("AI Synthesis failed to generate an image. Please ensure the subject's face is clearly visible and not obscured by complex patterns.");
     }
 
     return processedImageBase64;
   } catch (error: any) {
     console.error("Gemini Engine Error:", error);
-    throw new Error("Transformation failed. Please try a photo with clearer lighting and a visible head for the AI to analyze.");
+    const message = error.message || "Transformation failed.";
+    throw new Error(message.includes("AI Engine Refusal") ? message : "The AI compliance engine encountered an error. Please ensure your photo has a visible subject and try again.");
   }
 }

@@ -117,7 +117,7 @@ const App: React.FC = () => {
               </button>
             </div>
           )}
-          {error && <div className="mt-4 p-3 bg-red-50 border border-red-100 rounded-xl text-red-700 text-xs flex items-start"><i className="fa-solid fa-triangle-exclamation mt-0.5 mr-2"></i><p>{error}</p></div>}
+          {error && <div className="mt-4 p-3 bg-red-50 border border-red-100 rounded-xl text-red-700 text-xs flex items-start shadow-sm"><i className="fa-solid fa-triangle-exclamation mt-0.5 mr-2"></i><div><p className="font-bold mb-1">Processing Error</p><p>{error}</p></div></div>}
         </div>
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 min-h-[400px] flex flex-col">
           <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
@@ -125,7 +125,16 @@ const App: React.FC = () => {
           </h2>
           <div className="flex-grow flex flex-col items-center justify-center">
             {status === ProcessingStatus.PROCESSING ? (
-              <div className="text-center space-y-3"><div className="w-16 h-16 mx-auto relative"><div className="absolute inset-0 border-4 border-blue-100 rounded-full"></div><div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div></div><p className="text-sm font-bold text-gray-900">Applying Compliance Logic...</p></div>
+              <div className="text-center space-y-3">
+                <div className="w-16 h-16 mx-auto relative">
+                  <div className="absolute inset-0 border-4 border-blue-100 rounded-full"></div>
+                  <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-bold text-gray-900">Digital Forensic Reconstruction...</p>
+                  <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">Enforcing Zero-Rejection Standards</p>
+                </div>
+              </div>
             ) : processedImage ? (
               <div className="w-full max-w-[280px] space-y-4">
                 <PassportPreview image={processedImage} showOverlay={showGuidelines} />
@@ -177,8 +186,8 @@ const App: React.FC = () => {
         ))}
       </div>
       <div className="mt-16 pt-8 border-t border-gray-100 flex justify-between items-center text-[10px] font-black text-gray-400 uppercase tracking-widest">
-        <span>PassportUK Pro • Intelligence Engine v2.5</span>
-        <span>Last Updated: Dec 2025</span>
+        <span>PassportUK Pro • Intelligence Engine v2.8</span>
+        <span>Last Updated: 24th Dec 2025</span>
       </div>
     </div>
   );
@@ -192,7 +201,7 @@ const App: React.FC = () => {
         {view === 'about' && renderContentPage('Platform Intelligence', 'fa-circle-info', [
           { head: 'Mission Statement', body: 'PassportUK Pro is engineered to bridge the gap between amateur photography and professional government standards. Our platform utilizes generative AI to ensure every applicant has access to compliant, high-quality documentation photos.' },
           { head: 'The Anatomical Engine', body: 'Unlike basic filters, our Gemini-powered engine performs a full volumetric analysis of the subject. It detects facial seeds, neutralizes ambient shadows, and reconstructs anatomical features to meet the 35mm x 45mm vertical requirement precisely.' },
-          { head: 'Compliance Logic', body: <ul className="list-disc space-y-2"><li><b>Lighting:</b> Balanced high-key output to eliminate nose and ear shadows.</li><li><b>Background:</b> Automatic injection of HMPO-approved Light Grey (#D3D3D3) or Cream.</li><li><b>Alignment:</b> 70-80% facial coverage from crown to chin.</li></ul> },
+          { head: 'Compliance Logic', body: <ul className="list-disc space-y-2"><li><b>Lighting:</b> Balanced high-key output to eliminate nose and ear shadows.</li><li><b>Background:</b> Automatic injection of HMPO-approved Light Grey (#D3D3D3) or Cream.</li><li><b>Alignment:</b> 70-80% facial coverage from crown to chin.</li><li><b>Attire:</b> Automatic synthesis of age-appropriate, compliant clothing for all demographics.</li></ul> },
           { head: 'Global Reach', body: 'While optimized for UK standards, our intelligence model supports diverse demographics across all age groups, from infants to seniors.' }
         ])}
 
@@ -233,7 +242,7 @@ const App: React.FC = () => {
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20"><i className="fa-solid fa-passport text-white text-sm"></i></div>
                 <span className="font-black text-xl text-white tracking-tighter">Passport<span className="text-blue-500">UK</span> Pro</span>
               </div>
-              <p className="text-sm text-slate-400 leading-relaxed max-w-sm">The world's most advanced AI compliance engine for official UK passport photography. Precision-engineered for rejection-free applications.</p>
+              <p className="text-sm text-slate-400 leading-relaxed max-w-sm">THE WORLD'S MOST ADVANCED AI COMPLIANCE ENGINE FOR OFFICIAL UK PASSPORT PHOTOGRAPHY. PRECISION-ENGINEERED FOR REJECTION-FREE APPLICATIONS.</p>
               <div className="flex items-center space-x-3 pt-2">
                 {[
                   { icon: 'fa-github', url: 'https://github.com/ymmiah' },
@@ -269,20 +278,20 @@ const App: React.FC = () => {
                 <h4 className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Status</h4>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2"><div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div><span className="text-[10px] font-bold text-slate-400">Operational</span></div>
-                  <div className="text-[9px] font-black text-slate-600 uppercase">Engine v2.5</div>
+                  <div className="text-[9px] font-black text-slate-600 uppercase">Engine v2.8</div>
                 </div>
               </div>
             </div>
           </div>
           <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex flex-col items-center md:items-start space-y-1">
-              <span className="text-white font-black text-sm tracking-tight">Developed by Yasin Mohammed Miah</span>
-              <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">&copy; 2025 UK Passport Pro • All Rights Reserved</p>
+              <span className="text-white font-black text-sm tracking-tight">DEVELOPED BY YASIN MOHAMMED MIAH</span>
+              <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">&copy; 2025 UK PASSPORT PRO • ALL RIGHTS RESERVED</p>
             </div>
             <div className="flex items-center space-x-4">
-               <div className="flex items-center space-x-2 opacity-30 grayscale hover:grayscale-0 transition-all duration-500"><i className="fa-solid fa-shield-halved text-blue-500"></i><span className="text-[9px] font-black text-slate-400 uppercase tracking-tighter">AI-Secure Pipeline</span></div>
+               <div className="flex items-center space-x-2 opacity-30 grayscale hover:grayscale-0 transition-all duration-500"><i className="fa-solid fa-shield-halved text-blue-500"></i><span className="text-[9px] font-black text-slate-400 uppercase tracking-tighter">AI-SECURE PIPELINE</span></div>
                <div className="h-4 w-px bg-slate-800"></div>
-               <div className="flex items-center space-x-2 opacity-30 grayscale hover:grayscale-0 transition-all duration-500"><i className="fa-solid fa-lock text-green-500"></i><span className="text-[9px] font-black text-slate-400 uppercase tracking-tighter">End-to-End Encrypted</span></div>
+               <div className="flex items-center space-x-2 opacity-30 grayscale hover:grayscale-0 transition-all duration-500"><i className="fa-solid fa-lock text-green-500"></i><span className="text-[9px] font-black text-slate-400 uppercase tracking-tighter">END-TO-END ENCRYPTED</span></div>
             </div>
           </div>
         </div>
